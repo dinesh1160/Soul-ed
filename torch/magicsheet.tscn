@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvci8xpe8aho8"]
+
+[ext_resource type="Texture2D" uid="uid://dwi5ban6ktoao" path="res://summerjam/magicsheet-Sheet.png" id="1_1wqmv"]
+[ext_resource type="Script" path="res://torch/magicsheet.gd" id="1_ueaom"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wsmyx"]
+atlas = ExtResource("1_1wqmv")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5a84p"]
+atlas = ExtResource("1_1wqmv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3liqb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wsmyx")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5a84p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_222iu"]
+size = Vector2(14, 18)
+
+[node name="magicsheet" type="Area2D"]
+script = ExtResource("1_ueaom")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3liqb")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_222iu")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://dit34b1h7obrq"]
+
+[ext_resource type="Script" path="res://gameover/gameover.gd" id="1_5uaqm"]
+[ext_resource type="Texture2D" uid="uid://b6t7obmju3wvi" path="res://summerjam/bg.png" id="1_w0gjs"]
+[ext_resource type="FontFile" uid="uid://ry7ec2jlsi8n" path="res://summerjam/typeface-mario-world-pixel-font/TypefaceMarioWorldPixelFilledRegular-Yz84q.otf" id="2_evdf6"]
+[ext_resource type="AudioStream" uid="uid://dqd5sol7e2jbt" path="res://summerjam/742853__universfield__scary-secrets.mp3" id="4_fpefg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ee1x2"]
+font = ExtResource("2_evdf6")
+font_size = 32
+font_color = Color(0.705882, 0.980392, 0.964706, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dnh38"]
+font = ExtResource("2_evdf6")
+font_color = Color(0.705882, 0.980392, 0.964706, 1)
+
+[node name="gameover" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5uaqm")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(566, 320)
+scale = Vector2(4, 4)
+texture = ExtResource("1_w0gjs")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 306.0
+offset_top = 230.0
+offset_right = 847.0
+offset_bottom = 294.0
+text = "congratulations"
+label_settings = SubResource("LabelSettings_ee1x2")
+uppercase = true
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 447.0
+offset_top = 289.0
+offset_right = 988.0
+offset_bottom = 353.0
+text = "you won"
+label_settings = SubResource("LabelSettings_ee1x2")
+uppercase = true
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 429.0
+offset_top = 367.0
+offset_right = 988.0
+offset_bottom = 431.0
+text = "press space to restart"
+label_settings = SubResource("LabelSettings_dnh38")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_fpefg")
+autoplay = true

@@ -1,0 +1,116 @@
+[gd_scene load_steps=15 format=3 uid="uid://d1xmjne3w2esf"]
+
+[ext_resource type="Script" path="res://skeleton/skeleton.gd" id="1_6hjhq"]
+[ext_resource type="Texture2D" uid="uid://ngr022yuxhxh" path="res://summerjam/skely-Sheet.png" id="1_400gh"]
+[ext_resource type="Texture2D" uid="uid://btiwjppj4yh4n" path="res://summerjam/White-Light-Transparent.png" id="3_qahnu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltnkf"]
+atlas = ExtResource("1_400gh")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdfxo"]
+atlas = ExtResource("1_400gh")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y137v"]
+atlas = ExtResource("1_400gh")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53syo"]
+atlas = ExtResource("1_400gh")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e84d1"]
+atlas = ExtResource("1_400gh")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xyf7f"]
+atlas = ExtResource("1_400gh")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wikjh"]
+atlas = ExtResource("1_400gh")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mir7t"]
+atlas = ExtResource("1_400gh")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gq25e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltnkf")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdfxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y137v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53syo")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e84d1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xyf7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wikjh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mir7t")
+}],
+"loop": true,
+"name": &"run",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q61q0"]
+size = Vector2(10, 23)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4h6jy"]
+radius = 15.6525
+
+[node name="skeleton" type="CharacterBody2D" groups=["skeleton"]]
+script = ExtResource("1_6hjhq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gq25e")
+animation = &"dead"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_q61q0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -10)
+zoom = Vector2(4.5, 4.5)
+limit_bottom = 120
+
+[node name="click_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="click_area"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_4h6jy")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-2, -8)
+scale = Vector2(0.12, 0.12)
+color = Color(0.498039, 0.647059, 0.823529, 1)
+energy = 0.1
+texture = ExtResource("3_qahnu")
+
+[connection signal="input_event" from="click_area" to="." method="_on_click_area_input_event"]

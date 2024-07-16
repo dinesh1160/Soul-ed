@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://8lxv8h8hkomp"]
+
+[ext_resource type="Texture2D" uid="uid://bgdaoivnl8p4s" path="res://summerjam/summerjamTileset.png" id="1_skmck"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4pbpj"]
+size = Vector2(48, 15.6)
+
+[node name="platform" type="AnimatableBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 0.00380797
+texture = ExtResource("1_skmck")
+region_enabled = true
+region_rect = Rect2(224.194, 128.377, 48.2086, 15.8372)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 5
+position = Vector2(0, 0.2)
+shape = SubResource("RectangleShape2D_4pbpj")

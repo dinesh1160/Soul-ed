@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://b37gbpl6u4b7s"]
+
+[ext_resource type="Texture2D" uid="uid://bt6y68b11c8au" path="res://summerjam/torch-Sheet.png" id="1_x3wtu"]
+[ext_resource type="Texture2D" uid="uid://btiwjppj4yh4n" path="res://summerjam/White-Light-Transparent.png" id="2_0ijl1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrqdt"]
+atlas = ExtResource("1_x3wtu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqggj"]
+atlas = ExtResource("1_x3wtu")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54682"]
+atlas = ExtResource("1_x3wtu")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2hcoi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrqdt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqggj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54682")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="torch_static" type="StaticBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2hcoi")
+autoplay = "default"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.3, 0.3)
+color = Color(0.498039, 0.647059, 0.823529, 1)
+energy = 0.64
+texture = ExtResource("2_0ijl1")
